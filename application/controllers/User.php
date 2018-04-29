@@ -38,7 +38,7 @@ class User extends CI_Controller {
             $this->form_validation->set_rules('postalcode', 'Postal Code', 'required');
             $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
             $this->form_validation->set_rules('profile_picture','Profile Picture') ;
-            
+
             if ($this->form_validation->run() == FALSE) {
                 $data['page'] = 'users/register' ;
                 $this->load->view('menu/content',$data);
@@ -219,7 +219,7 @@ class User extends CI_Controller {
                 redirect(site_url().'/user/login');
             }
             $data = array(
-                'firstName'=> $user_info->firstName,
+                'firstName'=> $user_info->firstname,
                 'email'=>$user_info->email,
 //                'user_id'=>$user_info->id,
                 'token'=>$this->base64url_encode($token)

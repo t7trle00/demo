@@ -15,6 +15,12 @@
   <link rel="stylesheet" href="<?php echo base_url('css/search.css');?>">
   <link rel="stylesheet" href="<?php echo base_url('css/host.css') ;?>">
   <link rel="stylesheet" href="<?php echo base_url('css/profile_header.css') ;?>">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 
   <body>
@@ -37,6 +43,7 @@
               <li><a href="<?php echo site_url('host_controller/host') ;?>">Host</a></li>
             <?php endif ; ?>
               <li><a data-toggle="modal" data-target="#myModal">Intruction</a></li>
+              <li><a href="<?php echo site_url('search/search_engine'); ?>">Search</a></li>
               <?php if($this->session->userdata('logged_in')) : ?>
               <li><a href="<?php echo site_url('search/search_engine'); ?>">Messages</a></li>
               <?php endif ; ?>

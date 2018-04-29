@@ -62,10 +62,10 @@
         </td>
       </tr>
       <tr>
-        <td style="text-align:left">PRICE</td>
+        <td style="text-align:left">PRICE (&euro;)</td>
         <td style="text-align:left">
           <input type="number" name="price" required>
-          <p><i>Note that price is in euro and hour based</i></p>
+          <p><i>Note that price is in euro and day based</i></p>
         </td>
       </tr>
       <tr>

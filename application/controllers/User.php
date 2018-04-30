@@ -10,6 +10,7 @@ class User extends CI_Controller {
             parent::__construct();
             $this->load->model('User_model', 'user_model', TRUE);
             $this->load->model('User_model') ;
+            $this->load->model('Car_model') ;
             $this->load->library('form_validation');
             $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
             $this->status = $this->config->item('status');
@@ -258,6 +259,12 @@ class User extends CI_Controller {
           $data['user_arr'] = $this->User_model->get_user() ;
           $data['page'] = 'menu/header' ;
           $this->load->view('menu/content',$data);
+        }
+        public function history()
+        {
+          $data['historyData'] = $this->User_model->get_history() ;
+          $data['page'] = 'users/history' ;
+          $this->load->view('menu/content',$data) ;
         }
         public function edit_user()
         {

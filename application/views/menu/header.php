@@ -57,6 +57,7 @@
                 <?php endif; ?>
                   <span class="popuptext" id="myPopup">
                     <a id="popuplink" href="<?php echo site_url('user/user_profile')?>" target="_top">You profile</a><br>
+                    <a id="popuplink" href="<?php echo site_url('user/history')?>" target="_top">Booking History</a><br>
                     <a id="popuplink" href="<?php echo site_url('user/logout')?>" target="_top">Log Out</a>
                   </span>
 

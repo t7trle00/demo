@@ -10,6 +10,13 @@ class User_model extends CI_Model {
         $this->status = $this->config->item('status');
         $this->roles = $this->config->item('roles');
     }
+    public function get_history()
+    {
+      $this->db->select('history.bookingID, status, userID, carID, total_price') ;
+      $this->db->from('history') ;
+      $this->db->join('bookings','history.bookingID = bookings.bookingID','inner') ;
+      return $this->db->get()->result_array() ;
+    }
     public function get_user()
     {
       $this->db->select('*') ;

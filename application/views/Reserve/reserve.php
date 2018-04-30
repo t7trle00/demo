@@ -164,7 +164,7 @@
                   <?php
                   for ($i=0; $i <count($cars) ; $i++)
                   {
-                    echo '<div class="col-sm-4">';
+                    echo '<div class="col-sm-4 text-center">';
                     echo '<img class="img-responsive" src="'.base_url().'other_gallery/'.$cars[$i]['photo']. '" alt="Image" style="height:100px">';
                     echo '<br><br>' ;
                     echo '</div>' ;
@@ -191,7 +191,7 @@
           <h3>Similar Host in <?php echo $location[0]['city'] ;?></h3>
           <?php for( $i = 0; $i < count($location); $i++)
                 {
-                  echo '<div class="col-sm-3 text-center">' ;
+                  echo '<div class="col-sm-2 text-center">' ;
                   echo '<a href="'.site_url('reserve/reserves/').$location[$i]['carID'].'">'.$location[$i]['title'].'</a>' ;
                   echo '<img class="img-responsive"  src="'.base_url().'cover_gallery/'.$location[$i]['cover_photo'].'" alt="Image" style="height:100px">' ;
                   echo '</div>' ;

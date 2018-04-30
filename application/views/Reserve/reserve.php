@@ -91,7 +91,7 @@
         <!--Left Panel-->
         <div class="col-sm-6">
           <form action="<?php echo site_url('reserve/identity/'.$cars[0]['carID']);?>" method="post">
-          <input type="number" name="carID" value="<?php echo $cars[0]['carID']?>">
+          <input type="number" hidden name="carID" value="<?php echo $cars[0]['carID']?>">
           <div class="row">
           <!--Check in-->
             <div class="col-sm-6">
@@ -147,6 +147,7 @@
                 <p> User 2</p>
             </div>
         </div>
+      </div>
         <!--end Left panel-->
 
         <!--Right Panel Price display-->

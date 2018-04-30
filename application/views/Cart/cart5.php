@@ -1,4 +1,6 @@
-
+<?php
+  $i = count($temporaryData) -1 ;
+ ?>
         <!--Left Panel-->
         <div class="col-sm-12" style="padding:25px;">
           <!--Check in-->
@@ -7,7 +9,7 @@
               <td><label for="">CHECK-IN</label></td>
                   <td>
                       <div class='input-group date' id='datetimepicker_checkin'>
-                          <input type='text' id="chkin" class="form-control" name="check_in" />
+                          <input type='text' id="chkin" disabled class="form-control" name="check_in" value="<?php echo $temporaryData[$i]['start_date'] ;?>" />
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-calendar"></span>
                         </span>
@@ -22,7 +24,7 @@
                 <td><label for="">CHECK-OUT</label></td>
                 <td>
                   <div class='input-group date' id='datetimepicker_checkout'>
-                      <input type='text' id="chkout" class="form-control" name="check_out"/>
+                      <input type='text' id="chkout" disabled class="form-control" name="check_out" value="<?php echo $temporaryData[$i]['end_date'] ;?>"/>
                       <span class="input-group-addon">
                           <span class="glyphicon glyphicon-calendar"></span>
                       </span>

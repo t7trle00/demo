@@ -25,4 +25,45 @@ class Search_model extends CI_model
     $this->db->where('carID',$carID) ;
     return $this->db->get()->result_array() ;
   }
+  public function get_location($carID)
+  {
+    $this->db->select('city') ;
+    $this->db->from('users') ;
+    $this->db->join('cars','users.id = cars.userID','inner') ;
+    $this->db->where('carID',$carID) ;
+    $get_id = $this->db->get()->result_array() ;
+    $this->db->select('city, title, cover_photo,carID') ;
+    $this->db->from('users') ;
+    $this->db->join('cars','users.id = cars.userID','inner') ;
+    $this->db->where('users.city',$get_id[0]['city']) ;
+    return $this->db->get()->result_array() ;
+  }
+  public function save_temporary($temporary)
+  {
+    $this->db->insert('temporary',$temporary) ;
+  }
+  public function get_temporary()
+  {
+    $this->db->select('*') ;
+    $this->db->from('temporary') ;
+    return $this->db->get()->result_array() ;
+  }
+
+  public function confirmLicense($license)
+  {
+    $this->db->insert('licenses',$license) ;
+  }
+  public function get_license()
+  {
+    $this->db->select('*') ;
+    $this->db->from('licenses') ;
+    $this->db->get()->result_array() ;
+  }
+  public function confirmBooking($booking)
+  {
+    $this->db->insert('bookings',$booking) ;
+    $this->db->select('*') ;
+    $this->db->from('bookings') ;
+    return $this->db->get()->result_array() ;
+  }
 }

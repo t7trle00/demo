@@ -2,7 +2,7 @@
 
 <div class="container" style="margin-top:80px;">
   <ul class="breadcrumb">
-    <li><a href="<?php echo site_url('reserve/car/'.$cars[0]['carID']);?>">Booking details</li></a>
+    <li><a href="<?php echo site_url('reserve/reserves/'.$cars[0]['carID']);?>">Booking details</li></a>
     <li class="active">Identity prove</li>
     <li>Confirm payment</li>
   </ul>
@@ -11,10 +11,14 @@
   <!--Open row-->
   <div class="row">
       <div class="col-sm-6">
-        <?php $data['page']='cart/cart5';
-            $this->load->view($data['page']);?>
+        <?php
+        $data['temporaryData'] = $this->search_model->get_temporary() ;
+        $data['page']='cart/cart5';
+        $this->load->view('cart/cart5',$data);?>
       </div>
       <!--Right Panel Price display-->
+      <?php echo form_open_multipart('cart/ConfirmPayment/'.$cars[0]['carID']); ?>
+      <form  method="post" enctype="multipart/form-data">
       <div class="col-sm-6">
             <!--upload-->
             <div class="col-sm-12 text-center">
@@ -24,10 +28,11 @@
                 <h4>Please attach below pickture of your driving license.
                 This is to double check when you check-in with host</h4>
             </div>
+
             <div class="col-sm-12">
-              <form action="upload.php" method="post" enctype="multipart/form-data">
-                  <input type="file" name="fileToUpload" id="fileToUpload">
-              </form>
+
+                  <input type="file" name="driving_license" id="fileToUpload">
+
             </div>
             <!--End upload-->
             <div class="col-sm-12 text-center">
@@ -43,10 +48,10 @@
         </div>
         <!--End Right Panel-->
         <div class="col-sm-12 text-left" style="padding-top:20px;">
-            <a href="<?php echo site_url('reserve/car/'.$cars[0]['carID']);?>" type="button" class="btn btn-primary" >Back</a>
-            <a href="<?php echo site_url('cart/cart3s/'.$cars[0]['carID']);?>" type="button" class="btn btn-primary" >Continue</a>
+            <a href="<?php echo site_url('reserve/reserves/'.$cars[0]['carID']);?>" type="button" class="btn btn-primary" >Back</a>
+            <input class="btn btn-primary" type="submit" name="submit" value="Continue">
         </div>
-  </div>
+        </form>
   <!--End row-->
 
 </div>

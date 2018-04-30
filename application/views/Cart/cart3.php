@@ -1,10 +1,8 @@
-
-
-
+<?php $i = count($temporaryData)-1 ; ?>
 <div class="container" style="margin-top:80px;">
   <ul class="breadcrumb">
-    <li><a href="<?php echo site_url('reserve/car/'.$cars[0]['carID']);?>">Booking details</li></a>
-    <li><a href="<?php echo site_url('cart/cart2s/'.$cars[0]['carID']);?>">Identity prove</li></a>
+    <li><a href="<?php echo site_url('reserve/reserves/'.$cars[0]['carID']);?>">Booking details</li></a>
+    <li><a href="<?php echo site_url('cart/identity/'.$cars[0]['carID']);?>">Identity prove</li></a>
     <li class="active">Confirm payment</li>
   </ul>
 </div>
@@ -12,9 +10,19 @@
 <div class="container" style="box-shadow:0px 5px 10px;padding: 15px;">
   <!--Open row-->
   <div class="row">
+    <form  action="<?php echo site_url('cart/ConfirmMessage/'.$cars[0]['carID'])?>" method="post">
       <div class="col-sm-6">
-        <?php $data['page']='cart/cart5';
-            $this->load->view($data['page']);?>
+
+          <input type="text" hidden name="start_date" value="<?php echo $temporaryData[$i]['start_date']?>">
+          <input type="text" hidden name="end_date" value="<?php echo $temporaryData[$i]['end_date']?>">
+          <input type="number" hidden name="carID" value="<?php echo $cars[0]['carID']?>">
+          <input type="number" hidden name="userID" value="<?php echo $this->session->id?>">
+          <input type="text" hidden name="location" value="<?php echo $location[0]['city']?>">
+          <input type="number" hidden name="totalprice" value="<?php echo '12'?>">
+
+        <?php
+        $this->load->view('cart/cart5');
+        ?>
       </div>
       <!--Right Panel Price display-->
       <div class="col-sm-6">
@@ -53,19 +61,20 @@
               </div>
             </div>
             <div class="col-sm-12">
-                <form>
+                
                     <div class="checkbox text-center">
                       <label><input type="checkbox" value="">I agree to the <a href="">host's rules</a>, <a href=""> Cancellation</a>.
                       <br>I also agree on <a href="">term of use</a> ,<a href="">privacy</a> of Engine4U</label>
                     </div>
-                </form>
+
             </div>
         </div>
         <!--End Right Panel-->
         <div class="col-sm-12 text-left" style="padding-top:20px;">
-            <a href="<?php echo site_url('cart/cart2s/'.$cars[0]['carID']);?>" type="button" class="btn btn-primary" >Back</a>
-            <a href="<?php echo site_url('cart/cart4s/'.$cars[0]['carID']);?>" type="button" class="btn btn-primary" >Continue</a>
+            <a href="<?php echo site_url('cart/Identity/'.$cars[0]['carID']);?>" type="button" class="btn btn-primary" >Back</a>
+            <input type="submit" name="submit" value="Confirm">
         </div>
+    </form>
   </div>
   <!--End row-->
 

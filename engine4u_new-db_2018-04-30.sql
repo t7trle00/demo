@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Apr 29, 2018 at 10:19 PM
+-- Generation Time: Apr 30, 2018 at 02:21 PM
 -- Server version: 5.6.35
 -- PHP Version: 7.1.1
 
@@ -30,11 +30,20 @@ CREATE TABLE `bookings` (
   `bookingID` int(11) NOT NULL,
   `userID` int(11) NOT NULL,
   `carID` int(11) NOT NULL,
-  `starting_time` datetime DEFAULT NULL,
-  `ending_time` datetime DEFAULT NULL,
+  `start_date` datetime DEFAULT NULL,
+  `end_date` datetime DEFAULT NULL,
   `total_price` varchar(255) DEFAULT NULL,
   `location` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `bookings`
+--
+
+INSERT INTO `bookings` (`bookingID`, `userID`, `carID`, `start_date`, `end_date`, `total_price`, `location`) VALUES
+(2, 8, 15, '2018-04-15 00:00:00', '2018-04-16 00:00:00', '12', 'Oulu'),
+(3, 8, 15, '2018-04-15 00:00:00', '2018-04-16 00:00:00', '12', 'Oulu'),
+(4, 8, 15, '2018-04-15 00:00:00', '2018-04-16 00:00:00', '12', 'Oulu');
 
 -- --------------------------------------------------------
 
@@ -193,6 +202,31 @@ INSERT INTO `images` (`imgID`, `carID`, `photo`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `licenses`
+--
+
+CREATE TABLE `licenses` (
+  `licenseID` int(11) NOT NULL,
+  `license` varchar(200) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `licenses`
+--
+
+INSERT INTO `licenses` (`licenseID`, `license`) VALUES
+(18, 'flower76.jpg'),
+(19, 'flower77.jpg'),
+(20, 'flower78.jpg'),
+(21, 'flower79.jpg'),
+(22, ''),
+(23, ''),
+(24, ''),
+(25, 'flower4.jpg');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `review`
 --
 
@@ -202,6 +236,27 @@ CREATE TABLE `review` (
   `review` varchar(255) DEFAULT NULL,
   `rating` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `temporary`
+--
+
+CREATE TABLE `temporary` (
+  `temID` int(11) NOT NULL,
+  `carID` int(11) NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `totalprice` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `temporary`
+--
+
+INSERT INTO `temporary` (`temID`, `carID`, `start_date`, `end_date`, `totalprice`) VALUES
+(29, 15, '2018-04-15', '2018-04-16', 0);
 
 -- --------------------------------------------------------
 
@@ -272,7 +327,7 @@ INSERT INTO `users` (`id`, `firstname`, `lastname`, `profile_picture`, `birthdat
 (5, 'bbb', 'bbb', NULL, '0000-00-00', '', 0, '', NULL, NULL, 'Oulu', NULL, NULL, NULL, '', '', ''),
 (6, 'bbb', 'bbb', NULL, '0000-00-00', '', 0, '', NULL, NULL, 'Oulu', NULL, NULL, NULL, '', '', ''),
 (7, 'bbb', 'bbb', NULL, '0000-00-00', '', 0, '', NULL, NULL, 'Ha Noi', NULL, NULL, NULL, '', '', ''),
-(8, 'thao', 'tran', 'flower4.jpg', '0000-00-00', '12345@gmail.com', 98, 'sha256:1000:JAfqRGI3aJ82uDrRXsVPQdhJ3naRekF1:BkdzT2/d3yv2iYn7t5TemBjPUkP8L/bH', '9yhbh', 'njn', 'oulu', '90670', NULL, NULL, 'subscriber', 'approved', '2018-04-29 04:45:06 PM'),
+(8, 'thao', 'tran', 'flower4.jpg', '0000-00-00', '12345@gmail.com', 98, 'sha256:1000:JAfqRGI3aJ82uDrRXsVPQdhJ3naRekF1:BkdzT2/d3yv2iYn7t5TemBjPUkP8L/bH', '9yhbh', 'njn', 'oulu', '90670', NULL, NULL, 'subscriber', 'approved', '2018-04-30 02:19:31 PM'),
 (9, 'thao', 'tran', NULL, '0000-00-00', '54321@gmail.com', 9080, '', 'vietnam', 'jdfijer', 'Oulu', '90490', NULL, NULL, 'subscriber', 'pending', ''),
 (10, 'thao', 'tran', 'flower8.jpg', '0000-00-00', '789@gmail.com', 9080, 'sha256:1000:fionAo9Hdv3CpC0RFMIjqakTSD19BMF8:G1Dm1P97IeHmOzE+LrmMcc+7m+mQ9jwT', 'vietnam', 'jdfijer', 'Oulu', '90490', NULL, NULL, 'subscriber', 'approved', '2018-04-29 04:44:06 PM'),
 (11, 'a', 'b', NULL, '0000-00-00', 'abc@gmail.com', 90, 'sha256:1000:lOJCQb1aiSfL6tJHruTDRLrbONm+RbMm:5WqxNUfCRIl6rUtGrIUVF5KA5LZtVNNT', '9hy', 'iuy', 'Oulu', '9080', NULL, NULL, 'subscriber', 'approved', '2018-04-28 12:04:20 PM'),
@@ -333,11 +388,23 @@ ALTER TABLE `images`
   ADD KEY `carID` (`carID`);
 
 --
+-- Indexes for table `licenses`
+--
+ALTER TABLE `licenses`
+  ADD PRIMARY KEY (`licenseID`);
+
+--
 -- Indexes for table `review`
 --
 ALTER TABLE `review`
   ADD PRIMARY KEY (`reviewID`),
   ADD KEY `bookingID` (`bookingID`);
+
+--
+-- Indexes for table `temporary`
+--
+ALTER TABLE `temporary`
+  ADD PRIMARY KEY (`temID`);
 
 --
 -- Indexes for table `tokens`
@@ -359,7 +426,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `bookings`
 --
 ALTER TABLE `bookings`
-  MODIFY `bookingID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `bookingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `calendar`
 --
@@ -381,10 +448,20 @@ ALTER TABLE `history`
 ALTER TABLE `images`
   MODIFY `imgID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 --
+-- AUTO_INCREMENT for table `licenses`
+--
+ALTER TABLE `licenses`
+  MODIFY `licenseID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+--
 -- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
   MODIFY `reviewID` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `temporary`
+--
+ALTER TABLE `temporary`
+  MODIFY `temID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 --
 -- AUTO_INCREMENT for table `tokens`
 --

@@ -1,4 +1,21 @@
 <?php $this->load->view('menu/header') ; ?>
+<script>
+    $(function xxxx() {
+    $('#datetimepicker_checkin').datetimepicker({
+                useCurrent: false ,
+                format: 'YYYY-MM-DD',
+                // $('#datetimepicker_checkin').mindate($('#start_d.value'));
+            });
+    $('#datetimepicker_checkout').datetimepicker({
+        useCurrent: false ,
+        format: 'YYYY-MM-DD'  //Important! See issue #1075
+    });
+    $("#datetimepicker_checkin").on("dp.change", function (e) {
+        $('#datetimepicker_checkout').data("DateTimePicker").minDate(e.date);
+    });
+    });
+
+</script>
 <div class="hostNav" style="text-align:center">
   <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -57,8 +74,8 @@
       <tr>
         <td style="text-align:left">YEAR</td>
         <td style="text-align:left">
-          <input type="number" name="year">
-          <p><i>Year when your car is manufactured</i></p>
+          <input type="number" name="year" min_length="1993">
+          <p><i>Year when your car is manufactured. Your car should be manufactured after 1993</i></p>
         </td>
       </tr>
       <tr>
@@ -79,6 +96,30 @@
           </select>
           <p><i>Depend on your choice of cancellation policy, <br>
             customers are allowed to cancel the reservation in a certain way</i></p>
+        </td>
+      </tr>
+      <tr>
+        <td style="text-align:left">STARTING DATE</td>
+        <td style="text-align:left">
+          <div class='input-group date col-sm-4' id='datetimepicker_checkin'>
+              <input type='text' id="chkin" class="form-control" name="check_in"/>
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar" ></span>
+            </span>
+        </div>
+          <p><i>Please give the date that you are going to give the car for rent</i></p>
+        </td>
+      </tr>
+      <tr>
+        <td style="text-align:left">ENDING DATE</td>
+        <td style="text-align:left">
+          <div class='input-group date col-sm-4' id='datetimepicker_checkout'>
+              <input type='text' id="chkout" class="form-control" name="check_out"/>
+              <span class="input-group-addon">
+                  <span class="glyphicon glyphicon-calendar"></span>
+              </span>
+          </div>
+          <p><i>Please give the date that the car is not available for rent</i></p>
         </td>
       </tr>
     </table>

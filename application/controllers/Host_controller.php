@@ -94,6 +94,14 @@ class Host_controller extends CI_Controller {
 	    ) ;
 	  }
 	  $success_1 = $this->Host_model->get_update($carID,$update_data) ;
+    //update calendar
+    $calendar = array(
+      'start_date' => $this->input->post('check_in'),
+      'end_date' =>  $this->input->post('check_out'),
+      'carID' => $carID
+    );
+    $calenID = $this->input->post('calenID') ;
+    $sucess_3 = $this->Host_model->update_calendar($calenID,$calendar) ;
 	  $number_of_files = sizeof($_FILES['other_photo']['name']) ;
 	  $files = $_FILES['other_photo'] ;
 	  $config['upload_path'] = './other_gallery/' ;
@@ -117,13 +125,15 @@ class Host_controller extends CI_Controller {
     if(!empty($_FILES['other_photo']['name']))
     {
       $this->Host_model->get_delete_images($carID) ;
+      //update images
       $images_list=array_map( function($addID) use ($carID)
       {
         $addID['carID']=$carID;
         return $addID ;
       },$update_images) ;
       $success_2 = $this->Host_model->add_photo($images_list) ;
-      if($success_1 && $success_2)
+
+      if($success_1 && $success_2 && $sucess_3)
       {
         echo '<script>alert("Data updated successfully")</script>' ;
       }
@@ -133,7 +143,7 @@ class Host_controller extends CI_Controller {
     }
     else
     {
-      if($success_1)
+      if($success_1 && $sucess_3)
       {
         echo '<script>alert("Data updated successfully")</script>' ;
       }

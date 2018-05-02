@@ -1,3 +1,20 @@
+<script>
+    $(function xxxx() {
+    $('#datetimepicker_checkin').datetimepicker({
+                useCurrent: false ,
+                format: 'YYYY-MM-DD',
+                // $('#datetimepicker_checkin').mindate($('#start_d.value'));
+            });
+    $('#datetimepicker_checkout').datetimepicker({
+        useCurrent: false ,
+        format: 'YYYY-MM-DD'  //Important! See issue #1075
+    });
+    $("#datetimepicker_checkin").on("dp.change", function (e) {
+        $('#datetimepicker_checkout').data("DateTimePicker").minDate(e.date);
+    });
+    });
+
+</script>
 <div class="hostNav" style="text-align:center">
   <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -155,6 +172,37 @@
             }
           ?>
         </select>
+      </div>
+      <br><br>
+    </div>
+    <div class="row">
+      <div class="col-sm-3" style="text-align:right">
+          <label>START DATE</label>
+      </div>
+      <div class="col-sm-9">
+        <input type="text" name="calenID" hidden value="<?php echo $id_get_edit[0]['calenID']?>">
+        <div class='input-group date col-sm-4' id='datetimepicker_checkin'>
+            <input type='text' id="chkin" class="form-control" name="check_in" value="<?php echo $id_get_edit[0]['start_date']?>"/>
+          <span class="input-group-addon">
+              <span class="glyphicon glyphicon-calendar" ></span>
+          </span>
+      </div>
+      <p>Format date: YYYY-MM-DD</p>
+      </div>
+      <br><br>
+    </div>
+    <div class="row">
+      <div class="col-sm-3" style="text-align:right">
+          <label>END DATE</label>
+      </div>
+      <div class="col-sm-9">
+        <div class='input-group date col-sm-4' id='datetimepicker_checkout'>
+            <input type='text' id="chkout" class="form-control" name="check_out" value="<?php echo $id_get_edit[0]['end_date']?>"/>
+            <span class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+            </span>
+        </div>
+        <p>Format date: YYYY-MM-DD</p>
       </div>
       <br><br>
     </div>

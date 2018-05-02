@@ -83,7 +83,20 @@ function ShowSpeListing(carID)
                         '</div>' +
                         '<div class="row">' +
                         '<h3>CANCELLATION POLICY </h3>' + jsonData[0].cancellation_policy +
-                        '</div></div>';
+                        '</div>' +
+                        '<div class="row"><div class="input-group date col-sm-4">' +
+                            '<input type="text" id="chkout" class="form-control" value="'+jsonData[0].start_date+'"/>' +
+                            '<span class="input-group-addon">' +
+                                '<span class="glyphicon glyphicon-calendar"></span>' +
+                            '</span>' +
+                        '</div></div>' +
+                        '<div class="row"><div class="input-group date col-sm-4">' +
+                            '<input type="text" id="chkout" class="form-control" value="'+jsonData[0].end_date+'"/>' +
+                            '<span class="input-group-addon">' +
+                                '<span class="glyphicon glyphicon-calendar"></span>' +
+                            '</span>' +
+                        '</div></div>' +
+                        '</div>';
             document.getElementById('results').innerHTML = data ;
         }
         else
